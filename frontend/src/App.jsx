@@ -10,6 +10,7 @@ import NotificationsPage from './pages/NotificationsPage.jsx'
 
 import {Toaster} from 'react-hot-toast'
 import PageLoader from './components/PageLoader.jsx'
+import Layout from './components/Layout.jsx'
 import useAuthUser from './hooks/useAuthUser.js'
 
 const App = () => {
@@ -22,9 +23,16 @@ const App = () => {
   if(isLoading) return <PageLoader/>;
 
   return (
-    <div className='h-screen' data-theme="night">
+    <div className='h-screen' data-theme="forest">
       <Routes>
-        <Route path='/' element={isAuthenticated && isOnboarded ? (<HomePage/>): (<Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />)}/>
+        <Route path='/' element={
+          isAuthenticated && isOnboarded ? (
+          <Layout showSidebar={true}>
+            <HomePage/>
+          </Layout>
+          ): (
+            <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />)}
+          />
         <Route
           path="/signup"
           element={
