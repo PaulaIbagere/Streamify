@@ -20,7 +20,7 @@ const App = () => {
   const {theme} = useThemeStore();
 
   const isAuthenticated = Boolean(authUser);
-  const isOnboarded = authUser?.isOnboarded
+  const isOnboarded = authUser?.isOnboarded;
   
   if(isLoading) return <PageLoader/>;
 
@@ -29,12 +29,12 @@ const App = () => {
 
       <Routes>
         <Route path='/' element={
-          isAuthenticated && isOnboarded ? (
+          isAuthenticated && isOnboarded === "true" ? (
           <Layout showSidebar={true}>
             <HomePage/>
           </Layout>
           ): (
-            <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />)}
+            <Navigate to={isAuthenticated === "false" ? "/login" : "/onboarding"} />)}
           />
         <Route
           path="/signup"
@@ -43,11 +43,11 @@ const App = () => {
           }
         />
         <Route path='/login' element={!isAuthenticated ? <LoginPage/> : <Navigate to={isOnboarded ? "/" : "/onboarding"}/>}/>
-         <Route
+        <Route
           path="/onboarding"
           element={
             isAuthenticated ? (
-              !isOnboarded  ? (
+              isOnboarded === "false" ? (
                 <OnboardingPage />
               ) : (
                 <Navigate to="/" />
