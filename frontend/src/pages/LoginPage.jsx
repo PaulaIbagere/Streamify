@@ -83,7 +83,7 @@ const LoginPage = () => {
                   </button>
                   <div className='text-center mt-4'>
                     <p className='text-sm'>Don't have an account?{" "}
-                    <Link to="/signup" className='text-primary hoverLunderline'>Sign in</Link>
+                    <Link to="/signup" className='text-primary hoverLunderline'>Sign up</Link>
                     </p>
                   </div>
                 </div>
